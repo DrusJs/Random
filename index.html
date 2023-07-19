@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANDOM</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: aliceblue;
+            padding: 20px 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+        textarea {
+            border-radius: 15px;
+            outline: 0;
+            border: 0;
+            resize: none;
+            padding: 10px;
+            font-size: 20px;
+        }
+        button {
+            width: 300px;
+            height: 300px;
+            box-sizing: border-box;
+            outline: 0;
+            border: 0;
+            background-color: rgb(196, 226, 252);
+            border-radius: 200px;
+            cursor: pointer;
+            font-size: 60px;
+            color: black;
+        }
+        .winner {
+            color: black;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            max-width: 700px;
+        }
+        .winner__name {
+            margin-left: 10px
+        }
+    </style>
+    <textarea id="input__text" class="input__text" name="" id="" cols="80" rows="15"></textarea>
+    <div class="winner"><span>Победитель: </span> <span class="winner__name"></span></div>
+    <button onclick="RandomWinner()">Кручу верчу</button>
+    <script>
+        function RandomWinner() {
+            let inputData = document.getElementById("input__text").value;
+            console.log(inputData);
+            if (inputData.replaceAll(" ","") == "") {return;}
+            inputData = inputData.split(",");
+            let winner = getRandomInt(inputData.length);
+            document.querySelector(".winner__name").innerHTML = inputData[winner];
+        }
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+    </script>
+</body>
+</html>

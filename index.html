@@ -20,9 +20,10 @@
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
         }
         .clear-history {
-            position: absolute;
+            position: relative;
             background-color: rgb(196, 226, 252);
             padding: 10px;
+            bottom: 10px;
             border-radius: 10px;
             cursor: pointer;
         }
@@ -69,6 +70,10 @@
         .winner__name {
             margin-left: 10px
         }
+        .prev-random-text {
+            width: 300px;
+            max-width: 300px;
+        }
         .random-history {
             display: flex;
             flex-direction: column;
@@ -81,13 +86,16 @@
     <div class="app_flex-row">
         <div class="prev-random-text" id="prev-random-text"></div>
         <div class="main__column">
-            <textarea id="input__text" class="input__text" name="" id="" cols="80" rows="15"></textarea>
+            <textarea id="input__text" class="input__text" name="" id="" cols="40" rows="12"></textarea>
             <div class="winner"><span>Победитель: </span> <span class="winner__name"></span></div>
             <button class="main__button" onclick="RandomWinner()">кручу верчу</button>
         </div>
         <div class="random-history" id="random-history"></div>
     </div>    
     <script>
+        if (sessionStorage.getItem("prev")) {
+            document.getElementById("prev-random-text").innerHTML = sessionStorage.getItem("prev")
+        }
         function RandomWinner() {
             let inputData = document.getElementById("input__text").value;
             if (inputData.replaceAll(" ","") == "") {return;}
@@ -95,6 +103,8 @@
             let winner = getRandomInt(inputData.length);
             document.querySelector(".winner__name").innerHTML = inputData[winner];
             document.getElementById("random-history").innerHTML += `<span>${inputData[winner]}</span>`;
+            sessionStorage.setItem("prev", document.getElementById("input__text").value);
+            document.getElementById("prev-random-text").innerHTML = sessionStorage.getItem("prev");
         }
 
         function ClearHistory() {

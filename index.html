@@ -81,8 +81,12 @@
             width: 300px;
             max-width: 300px;
         }
+        .test {
+            opacity: 0.2;
+        }
     </style>
     <button class="clear-history" onclick="ClearHistory()">Очистить историю</button>
+    <button class="clear-history test" onclick="TestGenerate()">Тест</button>
     <div class="app_flex-row">
         <div class="prev-random-text" id="prev-random-text"></div>
         <div class="main__column">
@@ -93,6 +97,7 @@
         <div class="random-history" id="random-history"></div>
     </div>    
     <script>
+        let testVal;
         if (sessionStorage.getItem("prev")) {
             document.getElementById("prev-random-text").innerHTML = sessionStorage.getItem("prev")
         }
@@ -113,6 +118,13 @@
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
+        }
+        function TestGenerate() {
+            testVal = ""
+            for (let i = 0; i < 100; i++) {
+                testVal += i+",";                
+            }
+            testVal+="end";
         }
     </script>
 </body>

@@ -98,8 +98,8 @@
     </div>    
     <script>
         let testVal;
-        if (sessionStorage.getItem("prev")) {
-            document.getElementById("prev-random-text").innerHTML = sessionStorage.getItem("prev")
+        if (localStorage.getItem("prev")) {
+            document.getElementById("prev-random-text").innerHTML = localStorage.getItem("prev")
         }
         function RandomWinner() {
             let inputData = document.getElementById("input__text").value;
@@ -108,8 +108,8 @@
             let winner = getRandomInt(inputData.length);
             document.querySelector(".winner__name").innerHTML = inputData[winner];
             document.getElementById("random-history").innerHTML += `<span>${inputData[winner]}</span>`;
-            sessionStorage.setItem("prev", document.getElementById("input__text").value);
-            document.getElementById("prev-random-text").innerHTML = sessionStorage.getItem("prev");
+            localStorage.setItem("prev", document.getElementById("input__text").value);
+            document.getElementById("prev-random-text").innerHTML = localStorage.getItem("prev");
         }
 
         function ClearHistory() {
